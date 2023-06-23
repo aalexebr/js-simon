@@ -53,7 +53,7 @@ function compareArrays(arrayLength){
             document.getElementById('print').innerHTML += ' incorrect '
         }
     }
-    document.getElementById('count').innerHTML = count
+    document.getElementById('count').innerHTML = 'result =' + count
 };
 
 function gameFunction(){
