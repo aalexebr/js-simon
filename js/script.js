@@ -1,40 +1,48 @@
 // creating array of non-unique rng and user number array
-rngArray = []
+// rngArray = []
 userArray =[]
-
-for(i=0; i < 5; i++){
-    rng= getRndInteger(1,9)
-    rngArray.push(rng)
-    printRng()
-}
+rngArray = createRngArray(5)
 setTimeout(gameFunction, 3 * 1000)
-console.log(rngArray)
+printRng(rngArray)
 console.log(userArray)
+console.log(rngArray)
 
 
 
-
-// functions
-
+// FUNCTIONS
+// RNG and print functions
 function getRndInteger(min, max) {
     return Math.floor(Math.random() * (max - min + 1) ) + min;
     
   };
 
-function printRng(){
-    return  document.getElementById('print').innerHTML += rng
+function printRng(array){
+    for(i=0; i < array.length; i++){
+        document.getElementById('print').innerHTML += array[i]
+    }
+    // return  document.getElementById('print').innerHTML += rng
  };
+ function createRngArray(arrLength){
+    let arr=[]
+    for(i=0; i < arrLength; i++){
+        rng= getRndInteger(1,9)
+        arr.push(rng)
+        // printRng()
+    }
+    return arr
+}
 
-function prompNumberUser(){
-    for(i=0; i < 5; i++){
+// post timeout Functions
+function prompNumberUser(userArrayLength){
+    for(i=0; i < userArrayLength; i++){
         numUser =parseInt(prompt('enter number'));
         userArray.push(numUser)
     }
     console.log(userArray)
 };
-function compareArrays(){
+function compareArrays(arrayLength){
     count = 0
-    for(i=0; i < 5; i++){
+    for(i=0; i < arrayLength; i++){
         // console.log('arrarng',rngArray[i],'userrarr',userArray[i])
         if(rngArray[i]==userArray[i]){
             console.log('arrarng',rngArray[i],'userrarr',userArray[i])
@@ -50,6 +58,10 @@ function compareArrays(){
 
 function gameFunction(){
     document.getElementById('print').innerHTML = ''
-    prompNumberUser()
-    compareArrays()
+    setTimeout(function(){
+        prompNumberUser(5)
+        compareArrays(5)
+    },
+    1)
+    
 };
